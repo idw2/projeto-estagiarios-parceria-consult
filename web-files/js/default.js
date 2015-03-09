@@ -269,3 +269,30 @@ function get_administradores(codempresa){
     });
     
 }
+
+function open_list_estagiarios(codempresa){    
+    var codigo = codempresa;
+    
+    var classe = "arrow_lista_" + codigo;
+    var hidden = "hide_" + codigo;
+    var lista = "lista_" + codigo;
+    
+    $.ajax({
+        type: 'get',
+        data: "codempresa=" + codigo,
+        url: '/pt/ajax/get-nom-estagiarios',
+        success: function(data) {
+            
+            ($("."+classe).attr("src") == "/web-files/img/arrow-down-01-32.png") ? $("."+classe).attr({"src":"/web-files/img/arrow-right-01-32.png"}) : $("."+classe).attr({"src":"/web-files/img/arrow-down-01-32.png"});   
+            ($("."+hidden).hasClass("hide")) ? $("."+hidden).removeClass("hide"): $("."+hidden).addClass("hide");
+            $("."+lista).html(data);
+        }
+    });
+}
+
+//<tr>
+//    <td colspan="3"><img style="cursor: pointer" onclick="javascript:open_list_estagiarios('<?php echo $empresa->CODCADASTRO; ?>');" class="arrow_lista_<?php echo $empresa->CODCADASTRO; ?>" src="/web-files/img/arrow-right-01-32.png" border="0" alt="Lista de Estagiários" title="Lista de Estagiários"></td>
+//</tr>
+//<tr class="hide hide_<?php echo $empresa->CODCADASTRO; ?>">
+//    <td colspan="3" class="lista_<?php echo $empresa->CODCADASTRO; ?>"></td>
+//</tr>

@@ -4,10 +4,10 @@ class Model {
 
     protected $db;
     protected $_tabela;
-    protected $host = "mysql04.parceriaconsult.com.br";
-    protected $username = "parceriaconsult1";
-    protected $dbname = "parceriaconsult1";
-    protected $password = "a1uO2SLWG";
+    protected $host = "localhost";
+    protected $username = "username";
+    protected $dbname = "dbname";
+    protected $password = "password";
 
     public function __construct() {
         $this->db = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);

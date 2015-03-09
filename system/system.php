@@ -11,7 +11,7 @@ class System {
     private $libraries_url = LIBRARIES;
     private $helpers_url = HELPERS;
     private $site = SITE;
-    private $arquivos = array("model", "Smarty.class", "Smarty", "controller", "Admin_Model", "phpQuery-onefile", "MPDF57/mpdf", "PHPExcel/Classes/PHPExcel", "planilha");
+    private $arquivos = array("model", "Smarty.class", "Smarty", "controller", "Admin_Model", "phpQuery-onefile", "MPDF57/mpdf", "PHPExcel/Classes/PHPExcel", "planilha", "GExtenso/GExtenso");
 
     public function __construct() {
         $this->setURL();

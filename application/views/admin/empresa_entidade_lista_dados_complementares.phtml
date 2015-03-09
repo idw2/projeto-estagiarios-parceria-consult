@@ -124,6 +124,7 @@
                             
                             <?php if ($view_papel == "ESTAGIARIO" || $view_papel == "MASTER") { ?>    
                                 <a target="_blank" href="/<?php echo $view_language; ?>/admin/pdf-questionario-estagiario/<?php echo strtolower($dados_complementares->CODESTAGIARIO); ?>/<?php echo strtolower($dados_complementares->CODEMPRESA); ?>/<?php echo strtolower($dados_complementares->CODDADOSCOMPLEMENTARES); ?>"><img src="/web-files/img/pdf.png" alt="PDF - Quationário Estagiário"  title="PDF - Questionário Estagiário" border="0"/></a>
+                                <a href="/<?php echo $view_language; ?>/admin/delete-dados-complementares/<?php echo strtolower($dados_complementares->CODESTAGIARIO); ?>/<?php echo strtolower($dados_complementares->CODEMPRESA); ?>/<?php echo strtolower($dados_complementares->CODDADOSCOMPLEMENTARES); ?>"><img src="/web-files/img/trash-can-32.png" alt="Excluir Dado Complementare"  title="Excluir Dado Complementare" border="0"/></a>
                             <?php } ?>    
                                 
                                 

@@ -40,6 +40,10 @@ and open the template in the editor.
                 $dta_inicio = $obj->DTA_INICIO;
                 $dta_fim = $obj->DTA_FIM;
                 $stg_cargo = $obj->CARGO;
+                $bolsa_valor_extenso = $obj->BOLSA_VALOR_EXTENSO;
+                $bolsa_valor = $obj->BOLSA_VALOR;
+                $carga_horaria = $obj->CARGA_HORARIA;
+                ($obj->CARGA_HORARIA_OBS == "") ? $obj->CARGA_HORARIA_OBS : $carga_horaria_obs = " ({$obj->CARGA_HORARIA_OBS})";
             }
         }
 
@@ -181,8 +185,8 @@ if ($view_EMP_COMPLEMENTO != "") {
 
         <br/>
 
-        <p>Celebram entre si <b>ACORDO DE COOPERAÇÃO</b>, convencionando as cláusulas e condições seguintes:</p>
-        <p><b>Cláusula 1ª</b> - O <b>ACORDO DE COOPERAÇÃO</b> tem por objetivo formalizar as condições básicas para a realização de
+        <p style="text-align: justify; font-size: 12px;">Celebram entre si <b>ACORDO DE COOPERAÇÃO</b>, convencionando as cláusulas e condições seguintes:</p>
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 1ª</b> - O <b>ACORDO DE COOPERAÇÃO</b> tem por objetivo formalizar as condições básicas para a realização de
             <a href="../../controllers/adminController.php"></a>
 
             <b>ESTÁGIO DE ESTUDANTES</b> da <b>INSTITUIÇÃO DE ENSINO</b> junto à <b>UNIDADE CONCEDENTE</b>, o qual, obrigatório ou não, deve ser
@@ -191,17 +195,17 @@ if ($view_EMP_COMPLEMENTO != "") {
 
             integra o <b>PROCESSO DE ENSINO APRENDIZAGEM</b>.</p>
 
-        <p><b>Cláusula 2ª</b> - Em decorrência do presente Acordo, celebra-se um <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b>, entre o
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 2ª</b> - Em decorrência do presente Acordo, celebra-se um <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b>, entre o
 
             Estudante e a <b>UNIDADE CONCEDENTE</b>, com interveniência da <b>INSTITUIÇÃO DE ENSINO</b>, nos termos dos artigos 2º e 3º da
 
             Lei 11788/08.</p>
 
-        <p><b>Cláusula 3ª</b> - As condições básicas para a realização de <b>ESTÁGIO</b> estão explicitadas no <b>TERMO DE COMPROMISSO DE
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 3ª</b> - As condições básicas para a realização de <b>ESTÁGIO</b> estão explicitadas no <b>TERMO DE COMPROMISSO DE
 
                 ESTÁGIO - TCE</b>, que se vincula ao presente acordo.</p>
 
-        <p>A <b>UNIDADE CONCEDENTE</b>, com interveniência e assinatura da <b>INSTITUIÇÃO DE ENSINO</b>, e, de outro lado, o</p>
+        <p style="text-align: justify; font-size: 12px;">A <b>UNIDADE CONCEDENTE</b>, com interveniência e assinatura da <b>INSTITUIÇÃO DE ENSINO</b>, e, de outro lado, o</p>
 
 <?php
 if ($view_STG_COMPLEMENTO != "") {
@@ -209,12 +213,6 @@ if ($view_STG_COMPLEMENTO != "") {
 }
 ?>
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
 
         <div style=" border: 1px solid black; padding: 5px"> 
             <h4 style="text-align: center;">ESTAGIARIO</h4>
@@ -244,31 +242,31 @@ if ($view_STG_COMPLEMENTO != "") {
 
 
 
-        <p>Celebram entre si este <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b>, convencionando as cláusulas e condições seguintes:</p>
+        <p style="text-align: justify; font-size: 12px;">Celebram entre si este <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b>, convencionando as cláusulas e condições seguintes:</p>
 
-        <p><b>Cláusula 4ª</b> - O <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b>, que decorre do <b>ACORDO DE COOPERAÇÃO</b>, tem por finalidade
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 4ª</b> - O <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b>, que decorre do <b>ACORDO DE COOPERAÇÃO</b>, tem por finalidade
 
             particularizar a relação jurídica especial existente entre o <b>ESTAGIÁRIO</b> e a <b>UNIDADE DE CONCEDENTE</b>, caracterizando
 
             a não vinculação empregatícia.</p>
 
 
-        <p><b>Cláusula 5ª</b> - Na vigência do presente Termo, o <b>ESTAGIÁRIO</b> estará incluído na cobertura do <b>SEGURO CONTRA ACIDENTES
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 5ª</b> - Na vigência do presente Termo, o <b>ESTAGIÁRIO</b> estará incluído na cobertura do <b>SEGURO CONTRA ACIDENTES
 
                 PESSOAIS</b>, proporcionado pela <b>APÓLICE</b> da <b>Seguradora Porto Seguro numero 211241-0/208287-2</b>.</p>
 
-        <p>Sob a responsabilidade da <b>PARCERIA</b>, conforme certificado Individual de Seguro fornecido ao <b>ESTAGIÁRIO</b>.</p>
+        <p style="text-align: justify; font-size: 12px;">Sob a responsabilidade da <b>PARCERIA</b>, conforme certificado Individual de Seguro fornecido ao <b>ESTAGIÁRIO</b>.</p>
 
-        <p><b>Cláusula 6ª</b> - Ficam compromissadas entre as partes as seguintes condições básicas para a realização do <b>ESTÁGIO</b>:</p>
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 6ª</b> - Ficam compromissadas entre as partes as seguintes condições básicas para a realização do <b>ESTÁGIO</b>:</p>
 
-        <p><b>a)</b> este <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b> terá vigência de <?php echo $dta_inicio; ?> a <?php echo $dta_fim; ?> podendo ser Denunciado a
+        <p style="text-align: justify; font-size: 12px;"><b>a)</b> este <b>TERMO DE COMPROMISSO DE ESTÁGIO - TCE</b> terá vigência de <?php echo $dta_inicio; ?> a <?php echo $dta_fim; ?> podendo ser Denunciado a
 
             qualquer tempo unilateralmente, mediante comunicação escrita ou ser prorrogado através da emissão de um <b>TERMO
 
                 ADITIVO</b>.</p>
 
 
-        <p><b>b)</b> É assegurado ao estagiário - Lei 11788/08 artigo 13 - sempre que o estagio tenha duração igual ou superior a
+        <p style="text-align: justify; font-size: 12px;"><b>b)</b> É assegurado ao estagiário - Lei 11788/08 artigo 13 - sempre que o estagio tenha duração igual ou superior a
 
             um ano, período de recesso de 30 dias a ser gozado preferencialmente durante suas férias escolares.
 
@@ -277,46 +275,44 @@ if ($view_STG_COMPLEMENTO != "") {
             em acordo com o parágrafo 1o do artigo 2º da Lei 11788/08.</p>
 
 
-        <p>Aos contratos com duração inferior a um ano o recesso será concedido conforme previsto no parágrafo 2º do artigo
+        <p style="text-align: justify; font-size: 12px;">Aos contratos com duração inferior a um ano o recesso será concedido conforme previsto no parágrafo 2º do artigo
 
             13 da Lei 11788/08.</p>
 
 
-        <p><b>c)</b> Se a instituição de ensino adotar verificações de aprendizagem periódicas ou finais, nos períodos de avaliação
+        <p style="text-align: justify; font-size: 12px;"><b>c)</b> Se a instituição de ensino adotar verificações de aprendizagem periódicas ou finais, nos períodos de avaliação
 
             a carga horária do estágio será reduzida pelo menos à metade, segundo estipulado no termo de compromisso, para
 
             garantir o bom desempenho do estudante. As atividades de <b>ESTÁGIO</b> a serem cumpridas pelo <b>ESTAGIÁRIO</b> serão
 
-            desenvolvidas na carga horária de <b>6(Seis)</b> horas diárias, no horário de
+            desenvolvidas na carga horária de <b><?php echo $carga_horaria.$carga_horaria_obs; ?></b> horas diárias, no horário de
 
             <b>13:00</b> as <b>19:00</b> com 1:00 hora de intervalo, totalizando as <b>30(Trinta)</b> horas semanais</p>
 
-        <p><b>d)</b> as atividades principais a serem desenvolvidas pelo estagiário na <b>FUNDAÇÃO DE ASSISTENCIA E PREVIDENCIA SOC</b> em
+        <p style="text-align: justify; font-size: 12px;"><b>d)</b> as atividades principais a serem desenvolvidas pelo estagiário na <b>FUNDAÇÃO DE ASSISTENCIA E PREVIDENCIA SOC</b> em
 
             caráter complementar, compatíveis com o Contexto Básico da Profissão ao qual o curso se refere são:</p>
 
 
-        <p>
-            <b>
-                Atualização de informações e relatórios gerencias; Manipulação de sistemas de análise de performance de 
+        <p style="text-align: justify; font-size: 12px;">
+            Atualização de informações e relatórios gerencias; Manipulação de sistemas de análise de performance de 
 
-                investimento da Fundação(Blomberg,Mitra); Manipulação de planilhas de acompanhamento dos investimentos 
+            investimento da Fundação(Blomberg,Mitra); Manipulação de planilhas de acompanhamento dos investimentos 
 
-                realizados pela Fundação; Atualização diária de banco do dados com informações diárias do mercado; etc...
-
-            </b>
-        </p>
-
-
-        <p><b>e)</b> durante a realização do estágio, o Estudante receberá uma bolsa auxílio mensal, cujo valor inicial será de:
-
-            R$ 2.031,84 (Dois Mil, Trinta e Um Reais e Oitenta e Quatro Centav Mês ta e Quatro Centav) por Mês , mais auxilio transporte.
+            realizados pela Fundação; Atualização diária de banco do dados com informações diárias do mercado; etc...
 
         </p>
 
 
-        <p>
+        <p style="text-align: justify; font-size: 12px;"><b>e)</b> durante a realização do estágio, o Estudante receberá uma bolsa auxílio mensal, cujo valor inicial será de:
+
+            R$ <?php echo $bolsa_valor." ".$bolsa_valor_extenso; ?> por Mês , mais auxilio transporte.
+
+        </p>
+
+
+        <p style="text-align: justify; font-size: 12px;">
             <b>f)</b> O valor da Bolsa-Auxílio poderá variar de acordo com a freqüência ao estágio e está sujeita a Retenção no
 
             Imposto de Renda, conforme tabela de incidência fixada pelo Ministério da Fazenda que estiver em vigor.
@@ -324,31 +320,31 @@ if ($view_STG_COMPLEMENTO != "") {
         </p>
 
 
-        <p><b>g)</b> O <b>PAGAMENTO</b> da Bolsa-Auxílio acima será efetuado diretamente pela Unidade Concedente de Estágio.</p>
+        <p style="text-align: justify; font-size: 12px;"><b>g)</b> O <b>PAGAMENTO</b> da Bolsa-Auxílio acima será efetuado diretamente pela Unidade Concedente de Estágio.</p>
 
-        <p><b>Cláusula 7ª</b> - No desenvolvimento do <b><b>ESTÁGIO</b> ora compromissado, caberá a <b>UNIDADE CONCEDENTE</b>:</p>
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 7ª</b> - No desenvolvimento do <b><b>ESTÁGIO</b> ora compromissado, caberá a <b>UNIDADE CONCEDENTE</b>:</p>
 
-        <p><b>a)</b> Proporcionar ao <b>ESTAGIÁRIO</b>, atividades de aprendizagem social, profissional e cultural, compatíveis com o
+        <p style="text-align: justify; font-size: 12px;"><b>a)</b> Proporcionar ao <b>ESTAGIÁRIO</b>, atividades de aprendizagem social, profissional e cultural, compatíveis com o
 
             Contexto Básico da Profissão, ao qual seu curso se refere ;</p>
 
 
-        <p><b>b)</b> Proporcionar à <b>INSTITUIÇÃO DE ENSINO e/ou à PARCERIA</b>, sempre que necessário, subsídios que possibilitem o
+        <p style="text-align: justify; font-size: 12px;"><b>b)</b> Proporcionar à <b>INSTITUIÇÃO DE ENSINO e/ou à PARCERIA</b>, sempre que necessário, subsídios que possibilitem o
 
             acompanhamento, a supervisão e avaliação do <b>ESTÁGIO</b>.</p>
 
-        <p><b>a)</b> cumprir, com todo empenho e interesse, toda programação estabelecida para seu <b>ESTÁGIO</b>;</p>
+        <p style="text-align: justify; font-size: 12px;"><b>a)</b> cumprir, com todo empenho e interesse, toda programação estabelecida para seu <b>ESTÁGIO</b>;</p>
 
-        <p><b>b)</b> Observar e obedecer as normas internas da <b>UNIDADE CONCEDENTE</b>;</p>
+        <p style="text-align: justify; font-size: 12px;"><b>b)</b> Observar e obedecer as normas internas da <b>UNIDADE CONCEDENTE</b>;</p>
 
 
 
-        <p>c) elaborar e entregar à <b>PARCERIA</b>, para posterior análise da <b></b>, relatório(s) sobre seu
+        <p style="text-align: justify; font-size: 12px;">c) elaborar e entregar à <b>PARCERIA</b>, para posterior análise da <b></b>, relatório(s) sobre seu
 
             <b>ESTÁGIO</b>, na forma, prazo e padrões estabelecidos.</p>
 
 
-        <p><b>Cláusula 9a</b> - Constituem motivos para a <b>INTERRUPÇÃO AUTOMÁTICA DA VIGÊNCIA</b> do presente <b>TERMO DE COMPROMISSO DE
+        <p style="text-align: justify; font-size: 12px;"><b>Cláusula 9a</b> - Constituem motivos para a <b>INTERRUPÇÃO AUTOMÁTICA DA VIGÊNCIA</b> do presente <b>TERMO DE COMPROMISSO DE
 
                 ESTÁGIO:<b></p>
 
@@ -360,7 +356,7 @@ if ($view_STG_COMPLEMENTO != "") {
                             do qual decorre;</p>
                     <p>III - desistência do estágio ou rescisão do presente Termo.</p>
 
-                    <p><b>Cláusula 10ª</a> - <b>A INSTITUIÇÃO DE ENSINO</b>, a <b>UNIDADE CONCEDENTE</b> e o <b>ESTAGIÁRIO</b>, signatários deste Termo, de comum
+                    <p><b>Cláusula 10ª</a></b> - <b>A INSTITUIÇÃO DE ENSINO</b>, a <b>UNIDADE CONCEDENTE</b> e o <b>ESTAGIÁRIO</b>, signatários deste Termo, de comum
 
                             acordo e para os efeitos do art 5º. da Lei 11788/08 elegem, como seu representante e órgão de apoio, a
 

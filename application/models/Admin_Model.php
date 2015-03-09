@@ -817,8 +817,8 @@ $query = $this->db->query("SELECT
   DATE_FORMAT( dc.DTA, '%d/%m/%Y - %Hh%i' ) AS DTA,
   dc.DTA_INICIO AS DTA_INICIO_USA,
   dc.DTA_FIM AS DTA_FIM_USA,
-  DATE_ADD( dc.DTA_INICIO, INTERVAL 6 MONTH ) AS DTA_INICIO_USA_6_MESES,
-  DATE_ADD( dc.DTA_FIM, INTERVAL 6 MONTH ) AS DTA_FIM_USA_6_MESES,
+  DATE_ADD( dc.DTA_FIM, INTERVAL 1 DAY ) AS DTA_INICIO_USA_6_MESES,
+  DATE_ADD( DATE_ADD( dc.DTA_FIM, INTERVAL 1 DAY ), INTERVAL 6 MONTH ) AS DTA_FIM_USA_6_MESES,
   DATE_FORMAT( dc.DTA_INICIO, '%d/%m/%Y' ) AS DTA_INICIO,
   DATE_FORMAT( dc.DTA_FIM, '%d/%m/%Y' ) AS DTA_FIM,
   dc.BOLSA_VALOR,
@@ -878,6 +878,7 @@ WHERE stg.CODCADASTRO='{$codestagiario}' AND era.CODEMPRESA_ENTIDADE='{$codempre
         if ($query->rowCount()) {
             $c = new Controller();
             while ($rows = $query->fetch(PDO::FETCH_OBJ)) {
+                $rows->BOLSA_VALOR_EXTENSO = "(". GExtenso::moeda($rows->BOLSA_VALOR) .")";
                 $rows->BOLSA_VALOR = $c->formataReais($rows->BOLSA_VALOR); 
                 $dados[] = $rows;
             }
@@ -903,6 +904,23 @@ WHERE stg.CODCADASTRO='{$codestagiario}' AND era.CODEMPRESA_ENTIDADE='{$codempre
         }
     }
     
+    public function delete_dados_complementares($coddadoscomplementares) {        
+        $query = $this->db->query("DELETE 
+	dados_complementares, 
+	dados_complementares_rel_enderecos, 
+	dados_complementares_rel_telefones,
+	enderecos,
+	telefones
+FROM dados_complementares
+INNER JOIN dados_complementares_rel_enderecos ON dados_complementares_rel_enderecos.CODDADOSCOMPLEMENTARES=dados_complementares.CODDADOSCOMPLEMENTARES
+INNER JOIN dados_complementares_rel_telefones ON dados_complementares_rel_telefones.CODDADOSCOMPLEMENTARES=dados_complementares.CODDADOSCOMPLEMENTARES
+INNER JOIN enderecos ON dados_complementares_rel_enderecos.CODENDERECO=enderecos.CODENDERECO
+INNER JOIN telefones ON dados_complementares_rel_telefones.CODTELEFONE=telefones.CODTELEFONE
+WHERE dados_complementares.CODDADOSCOMPLEMENTARES='{$coddadoscomplementares}'"); 
+
+        return true;
+    }
+    
     public function get_questionario_estagiario($coddadoscomplementares) {
 
         
@@ -918,6 +936,24 @@ WHERE stg.CODCADASTRO='{$codestagiario}' AND era.CODEMPRESA_ENTIDADE='{$codempre
             return false;
         }
     }
+    
+    public function get_nome_estagiario($codempresa) {
+    
+        $query = $this->db->query("SELECT STG_NOME as NOME FROM view_estagiarios WHERE EMP_CODCADASTRO='{$codempresa}' GROUP BY STG_CODCADASTRO ORDER BY STG_NOME ASC");
+
+        $query->execute();
+        if ($query->rowCount()) {
+            $c = new Controller();
+            while ($rows = $query->fetch(PDO::FETCH_OBJ)) {
+                $obj[] = $rows;
+            }
+            return $obj;
+        } else {
+            return false;
+        }
+    }
+    
+    
 
     public function get_enderecos($codcadastro) {
 

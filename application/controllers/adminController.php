@@ -252,9 +252,9 @@ Class Admin extends Controller {
                     $vars["erro"] = "* Nome da Empresa/Entidade requerido";
                 } else if (!$this->validaCNPJ($dados_cadastro['CPF_CNPJ'])) {
                     $vars["erro"] = "* CNPJ inválido";
-                } else if (!preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $dados_cadastro['EMAIL'])) {
+                } /*else if (!preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $dados_cadastro['EMAIL'])) {
                     $vars["erro"] = "E-mail inválido";
-                } else if ($model->existe_cadastro($dados_cadastro['CPF_CNPJ'])) {
+                } */else if ($model->existe_cadastro($dados_cadastro['CPF_CNPJ'])) {
                     $vars["erro"] = "Empresa já cadastrada!";
                 } else if (strlen($_POST["dia"]) != 2) {
                     $vars["erro"] = "* Dia de Abertura/Fundação requerido ou inválido";
@@ -1502,9 +1502,9 @@ Class Admin extends Controller {
 
                 if ($dados_cadastro['NOME_RAZAO_SOCIAL'] == "") {
                     $vars["erro"] = "* <b>Nome</b> do Administrador requerido";
-                } else if (!preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $dados_cadastro['EMAIL'])) {
+                } /*else if (!preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $dados_cadastro['EMAIL'])) {
                     $vars["erro"] = "<b>E-mail</b> inválido";
-                } else if (strlen($_POST["dia"]) != 2) {
+                } */else if (strlen($_POST["dia"]) != 2) {
                     $vars["erro"] = "* <b>Dia do nascimento</b> requerido ou inválido";
                 } else if (strlen($_POST["mes"]) != 2) {
                     $vars["erro"] = "* <b>Mês do nascimento</b> requerido ou inválido";
@@ -2226,6 +2226,25 @@ Class Admin extends Controller {
 
             $this->view("admin/empresa_entidade_lista_dados_complementares", $vars);
         }
+    }
+
+    public function delete_dados_complementares() {
+
+        $vars = $this->dados();
+        $model = new Admin_Model();
+
+        $papeis[] = "MASTER";
+
+        $arr = $this->array_url();
+
+        $codestagiario = strtoupper($arr[0]);
+        $codempresa = strtoupper($arr[1]);
+        $coddadoscomplementares = strtoupper($arr[2]);
+
+        $model->delete_dados_complementares($coddadoscomplementares);
+        echo "<script>window.location='/" . LANGUAGE . "/admin/lista-dados-complementares-estagiario-empresa-entidade/{$arr[0]}/{$arr[1]}/'</script>";
+        exit();
+
     }
 
     public function editar_dados_complementares_estagiario_empresa_entidade() {
@@ -3005,6 +3024,42 @@ Class Admin extends Controller {
             //$this->view("admin/empresa_entidade_avaliacao", $vars);
         }
     }
+    
+    public function pdf_lista_nomes_estagiario() {
+
+        $vars = $this->dados();
+        $model = new Admin_Model();
+
+        $papeis[] = "MASTER";
+        $papeis[] = "EMPRESA_ENTIDADE";
+        $papeis[] = "GESTOR";
+        $papeis[] = "ESTAGIARIO";
+
+        $arr = $this->array_url();
+
+        $codempresa = strtoupper($arr[0]);
+        $vars["codempresa"] = $codempresa;
+        
+        if ($this->permitir_acesso($_SESSION["ID"], $_SESSION["SENHA"], $papeis)) {
+
+            $nomes = $model->get_nome_estagiario($codempresa);
+            $empresa = $model->get_cadastro($codempresa);
+            $vars["empresa"] = $empresa;
+            
+            if($nomes){
+                $vars["nomes_estagiarios"] = $nomes;
+            }
+
+            $html = $this->view_pdf("pdf/pdf_nomes_estagiarios", $vars);
+
+            $mpdf = new mPDF();
+            $mpdf->WriteHTML($html);
+            //Colocando o rodape
+            //$mpdf->SetFooter('{DATE j/m/Y H:i}|Página {PAGENO} de {nb}|www.parceriaconsult.com.br');
+            $mpdf->Output();
+            exit;
+        }
+    }
 
     public function pdf_ficha_desligamento() {
 
@@ -3083,7 +3138,7 @@ Class Admin extends Controller {
             //$this->view("admin/empresa_entidade_avaliacao", $vars);
         }
     }
-    
+
     public function pdf_questionario_estagiario() {
 
         $vars = $this->dados();
@@ -3272,7 +3327,7 @@ Class Admin extends Controller {
             $this->view("admin/ficha_desligamento", $vars);
         }
     }
-    
+
     public function questionario_estagiario() {
 
         $vars = $this->dados();
@@ -3309,13 +3364,13 @@ Class Admin extends Controller {
             $model->insert_questionario_estagiario($fdl);
         }
 
-       # echo aqui; die();
-        
+        # echo aqui; die();
+
         if ($this->permitir_acesso($_SESSION["ID"], $_SESSION["SENHA"], $papeis)) {
 
             if ($_POST) {
 
-                
+
                 $fx["COPIA_TERMO"] = stripslashes($_POST["COPIA_TERMO"]);
                 $fx["COPIA_TERMO_DESC"] = stripslashes($_POST["COPIA_TERMO_DESC"]);
                 $fx["TEM_RECEBIDO"] = stripslashes($_POST["TEM_RECEBIDO"]);
@@ -3337,8 +3392,8 @@ Class Admin extends Controller {
                 $fx["DUVIDA_ESTAGIO_DESC"] = stripslashes($_POST["DUVIDA_ESTAGIO_DESC"]);
                 $fx["CRITICAR_DESC"] = stripslashes($_POST["CRITICAR_DESC"]);
                 $fx["PARCERIA_DESC"] = stripslashes($_POST["PARCERIA_DESC"]);
-                
-                foreach ($fx as $name => $value ){
+
+                foreach ($fx as $name => $value) {
                     $fx[$name] = trim($value);
                 }
 
@@ -3426,10 +3481,11 @@ Class Admin extends Controller {
 
 
         $dc = $model->get_dados_complementares($codestagiario, $codempresa, $coddadoscomplementares);
+        
         if ($dc) {
             $vars["dados_complementares"] = $dc;
         }
-
+        
         if ($model->existe_avaliacao($coddadoscomplementares)) {
             $vars["avaliacao"] = $model->get_avaliacao($coddadoscomplementares);
         }
@@ -3441,6 +3497,8 @@ Class Admin extends Controller {
             $vars["estagiario_empresa"] = $estagiario_empresa;
 
 
+            
+            
             $empresa_endereco = $model->get_enderecos($codempresa);
 
             if ($empresa_endereco) {
@@ -3499,7 +3557,7 @@ Class Admin extends Controller {
             exit();
         }
     }
-    
+
     public function pdf_termo_aditivo_estagio() {
 
         $vars = $this->dados();
@@ -3754,8 +3812,8 @@ Class Admin extends Controller {
         $arr = $this->array_url();
         $codestagiario = $arr[0];
         $codempresa = $arr[1];
-        
-        $arquivos = $model->get_arquivos($codestagiario);        
+
+        $arquivos = $model->get_arquivos($codestagiario);
 
         if ($arquivos) {
             $vars["arquivos"] = $arquivos;
@@ -3765,8 +3823,8 @@ Class Admin extends Controller {
 
         if ($this->permitir_acesso($_SESSION["ID"], $_SESSION["SENHA"], $papeis)) {
 
-             $vars["estagiario_empresa"] = $model->get_estagiario_view($codestagiario, $codempresa);
-            
+            $vars["estagiario_empresa"] = $model->get_estagiario_view($codestagiario, $codempresa);
+
 //            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //
 //                $foto = $_FILES["myfile"];
@@ -3816,7 +3874,7 @@ Class Admin extends Controller {
             $this->view("admin/upload_documento_admin", $vars);
         }
     }
-    
+
     public function upload_documento() {
 
         $vars = $this->dados();
@@ -3911,14 +3969,14 @@ Class Admin extends Controller {
 
             if (file_exists($arquivo->ARQUIVO_RAIZ)) {
                 @unlink($arquivo->ARQUIVO_RAIZ);
-            } 
-            
+            }
+
             if (file_exists($arquivo->DIRETORIO_RAIZ)) {
                 @rmdir($arquivo->DIRETORIO_RAIZ);
-            } 
-            
+            }
+
             $model->delete_arquivo($codarquivo);
-            
+
             header('Content-Type: application/json');
             $dados['CODARQUIVO'] = $codarquivo;
             echo json_encode($dados);
