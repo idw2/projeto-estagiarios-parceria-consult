@@ -32,7 +32,7 @@
         <?php if ($view_qntdd_dados_complementares < 1) { ?>
             <a href="/<?php echo $view_language; ?>/admin/dados-complementares-estagiario-empresa-entidade/<?php echo $view_codestagiario; ?>/<?php echo $view_codempresa; ?>" class="btn btn-default navbar-btn"><i class="fa fa-exchange"></i> Adicionar Dados Complementares</a>
         <?php } ?>
-        <?php if ($view_qntdd_dados_complementares < 4) { ?>
+        <?php if ($view_qntdd_dados_complementares < 4 && $view_qntdd_dados_complementares >= 1) { ?>
             <a href="/<?php echo $view_language; ?>/admin/dados-complementares-renovar-estagio/<?php echo $view_codestagiario; ?>/<?php echo $view_codempresa; ?>" class="btn btn-default navbar-btn"><i class="fa fa-exchange"></i> Renovar Estágio</a>
         <?php } ?>
     <?php } else { echo "<br/>"; } ?>

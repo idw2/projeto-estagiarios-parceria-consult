@@ -2269,6 +2269,8 @@ Class Admin extends Controller {
 
         $dc = $model->get_dados_complementares($codestagiario, $codempresa, $coddadoscomplementares);
 
+        var_dump($dc); die();
+        
         if ($dc) {
             foreach ($dc as $obj) {
                 $vars["dados_complementares"] = $obj;
@@ -2729,6 +2731,7 @@ Class Admin extends Controller {
                 $dados_complementares['CARGO'] = $_POST["cargo"];
                 $dados_complementares['CURSO'] = $_POST["curso"];
                 $dados_complementares['STATUS'] = 1;
+                ($_POST["data_desligamento"] != "") ? $dados_complementares['DTA_DESLIGAMENTO'] = $_POST["data_desligamento"] : null;
                 $dados_complementares['REPRESENTANTE_INTITUICAO'] = $_POST["representante_instituicao"];
                 $dados_complementares['CARGO_REPRESENTANTE'] = $_POST["cargo_representante"];
                 $dados_complementares['CTPS'] = $_POST["ctps"];

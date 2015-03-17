@@ -84,7 +84,7 @@
                 <input type="text" class="form-control" id="curso" name="curso" value="<?php echo $view_curso; ?>" placeholder="Curso"/>
 
                 <hr/>  
-                
+
                 <div class="row">
                     <div class="col col-sm-6">
                         <label>CTPS:</label>
@@ -178,16 +178,25 @@
         </div>
     </div>
 
-
-
-
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;"><h3>Preencher apenas se o estagiário for desligado!</h3></div>
+        <div class="panel-body">
+            <label for="cep" class="required">Data de Desligamento</label>
+            <div class="row">
+                <div class="col col-sm-6">
+                    <input type="text" class="form-control" id="data_desligamento" name="data_desligamento" value="<?php echo $view_data_desligamento; ?>" placeholder="Data de desligamento" onkeypress="return formataData(event, this);"/>
+                    <a href="empresa_entidade_dados_complementares_editar.phtml"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
     <hr/>        
     <input type="submit" class="btn btn-primary btn-lg" role="button" value="Enviar"/>
     <hr/>
     <br/>
 </form>
-
 
 
 <?php require_once 'footer.phtml'; ?>

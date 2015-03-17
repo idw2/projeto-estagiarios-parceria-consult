@@ -126,30 +126,36 @@
 
                 <hr/>        
                 <label>Curso do Estagiario</label>
-                <input type="text" class="form-control" id="curso" name="curso" value="<?php if ($_POST) {
-                           echo $view_curso;
-                       } else {
-                           echo $view_dados_complementares->CURSO;
-                       } ?>"placeholder="Curso"/>
+                <input type="text" class="form-control" id="curso" name="curso" value="<?php
+                if ($_POST) {
+                    echo $view_curso;
+                } else {
+                    echo $view_dados_complementares->CURSO;
+                }
+                ?>"placeholder="Curso"/>
 
                 <hr/> 
 
                 <div class="row">
                     <div class="col col-sm-6">
                         <label>CTPS:</label>
-                        <input type="text" class="form-control" id="ctps" name="ctps" value="<?php if ($_POST) {
-                           echo $view_ctps;
-                       } else {
-                           echo $view_dados_complementares->CTPS;
-                       } ?>" placeholder="Carteira de Trabalho por Tempo de Serviço"/>
+                        <input type="text" class="form-control" id="ctps" name="ctps" value="<?php
+                        if ($_POST) {
+                            echo $view_ctps;
+                        } else {
+                            echo $view_dados_complementares->CTPS;
+                        }
+                        ?>" placeholder="Carteira de Trabalho por Tempo de Serviço"/>
                     </div>
                     <div class="col col-sm-6">
                         <label>Série:</label>
-                        <input type="text" class="form-control" id="serie" name="serie" value="<?php if ($_POST) {
-                           echo $view_serie;
-                       } else {
-                           echo $view_dados_complementares->SERIE;
-                       } ?>" placeholder="Série nº"/>
+                        <input type="text" class="form-control" id="serie" name="serie" value="<?php
+                        if ($_POST) {
+                            echo $view_serie;
+                        } else {
+                            echo $view_dados_complementares->SERIE;
+                        }
+                        ?>" placeholder="Série nº"/>
                     </div>
                 </div>
 
@@ -163,12 +169,12 @@
             <div class="panel-body">
                 <label>Nome da Instituição de Ensino</label>
                 <input type="text" class="form-control" id="instituicao_ensino" name="instituicao_ensino" value="<?php
-                if ($_POST) {
-                    echo $view_instituicao_ensino;
-                } else {
-                    echo $view_dados_complementares->INTITUICAO_ENSINO;
-                }
-                ?>" placeholder="Instituição de Ensino"/>
+                        if ($_POST) {
+                            echo $view_instituicao_ensino;
+                        } else {
+                            echo $view_dados_complementares->INTITUICAO_ENSINO;
+                        }
+                        ?>" placeholder="Instituição de Ensino"/>
 
                 <br/>        
                 <label>Nome do Representante da Instituição de Ensino</label>
@@ -178,7 +184,7 @@
                 } else {
                     echo $view_dados_complementares->REPRESENTANTE_INTITUICAO;
                 }
-                ?>" placeholder="Instituição de Ensino"/>
+                        ?>" placeholder="Instituição de Ensino"/>
 
                 <br/>        
                 <label>Cargo do Representante da Instituição de Ensino</label>
@@ -188,7 +194,7 @@
                 } else {
                     echo $view_dados_complementares->CARGO_REPRESENTANTE;
                 }
-                ?>" placeholder="Instituição de Ensino"/>
+                        ?>" placeholder="Instituição de Ensino"/>
 
                 <br/> 
 
@@ -198,14 +204,14 @@
                     <img src="/web-files/img/plus.png" class="datagrid datagrid-plus" onclick="javascript: datagrid_plus()" style="cursor: pointer" alt="Adicionar telefone" title="Adicionar telefone" border="0"/>
                 </label><br/>
                 <div id="data">
-<?php
-if ($view_datagrid == "") {
+                    <?php
+                    if ($view_datagrid == "") {
 
-    if ($view_telefones) {
+                        if ($view_telefones) {
 
-        $i = 0;
-        foreach ($view_telefones as $telefone) {
-            ?>
+                            $i = 0;
+                            foreach ($view_telefones as $telefone) {
+                                ?>
 
                                 <div class="row datagrid">
                                     <div class="col col-sm-2">
@@ -219,14 +225,14 @@ if ($view_datagrid == "") {
                                     </div>
                                 </div>
 
-            <?php
-            $i++;
-        }
-    }
-} else {
-    echo $view_datagrid;
-}
-?>
+                                <?php
+                                $i++;
+                            }
+                        }
+                    } else {
+                        echo $view_datagrid;
+                    }
+                    ?>
                 </div>
 
                 <hr/>
@@ -265,13 +271,22 @@ if ($view_datagrid == "") {
                         <input type="text" class="form-control" id="estado" name="estado" maxlength="2" value="<?php echo $view_estado; ?>" placeholder="UF"/>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
 
-
+    <div class="panel panel-default">
+        <div class="panel-heading" style="text-align: center;"><h3>Preencher apenas se o estagiário for desligado!</h3></div>
+        <div class="panel-body">
+            <label for="cep" class="required">Data de Desligamento</label>
+            <div class="row">
+                <div class="col col-sm-6">
+                    <input type="text" class="form-control" id="data_desligamento" name="data_desligamento" value="<?php echo $view_data_desligamento; ?>" placeholder="Data de desligamento" onkeypress="return formataData(event, this);"/>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <hr/>        

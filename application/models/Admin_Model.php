@@ -153,6 +153,9 @@ WHERE cadastro.CPF_CNPJ=:CPF_CNPJ AND cadastro_rel_estagiarios.CODEMPRESA_ENTIDA
             $query->bindParam(":CODDADOSCOMPLEMENTARES", $dados["CODDADOSCOMPLEMENTARES"], PDO::PARAM_STR, 32);
             $query->bindParam(":DTA_INICIO", $dados["DTA_INICIO"]);
             $query->bindParam(":DTA_FIM", $dados["DTA_FIM"]);
+            if($dados["DTA_DESLIGAMENTO"] != ""){
+                $query->bindParam(":DTA_DESLIGAMENTO", $dados["DTA_DESLIGAMENTO"]);
+            }
             $query->bindParam(":BOLSA_VALOR", $dados["BOLSA_VALOR"], PDO::PARAM_INT);
             $query->bindParam(":CARGA_HORARIA", $dados["CARGA_HORARIA"], PDO::PARAM_STR);
             $query->bindParam(":INTITUICAO_ENSINO", $dados["INTITUICAO_ENSINO"], PDO::PARAM_STR, 255);
@@ -821,6 +824,7 @@ $query = $this->db->query("SELECT
   DATE_ADD( DATE_ADD( dc.DTA_FIM, INTERVAL 1 DAY ), INTERVAL 6 MONTH ) AS DTA_FIM_USA_6_MESES,
   DATE_FORMAT( dc.DTA_INICIO, '%d/%m/%Y' ) AS DTA_INICIO,
   DATE_FORMAT( dc.DTA_FIM, '%d/%m/%Y' ) AS DTA_FIM,
+  DATE_FORMAT( dc.DTA_DESLIGAMENTO, '%d/%m/%Y' ) AS DTA_DESLIGAMENTO,
   dc.BOLSA_VALOR,
   dc.CARGA_HORARIA,
   dc.CARGA_HORARIA_OBS,
